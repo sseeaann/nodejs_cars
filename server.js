@@ -12,6 +12,7 @@ var CarsSchema = new mongoose.Schema({
 	year: String
 });
 
+// Validation 
 CarsSchema.path("make").required(true, "Make cannot be blank");
 CarsSchema.path("model").required(true, "Model cannot be blank");
 CarsSchema.path("year").required(true, "Year cannot be blank");
