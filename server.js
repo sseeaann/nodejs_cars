@@ -4,6 +4,12 @@ var express = require("express"),
 	mongoose = require("mongoose"),
 	app = express();
 
+app.use(bodyParser.urlencoded({extended: true}));
+app.use(express.static(path.join(__dirname, "./client/static")));
+
+app.set("views", path.join(__dirname, "./client/views"));
+app.set("view engine", "ejs");
+
 mongoose.connect("mongodb://localhost/cars_mongoose");
 
 var CarsSchema = new mongoose.Schema({
@@ -18,12 +24,6 @@ CarsSchema.path("model").required(true, "Model cannot be blank");
 CarsSchema.path("year").required(true, "Year cannot be blank");
 
 var Cars = mongoose.model("Cars", CarsSchema);
-
-app.use(bodyParser.urlencoded({extended: true}));
-app.use(express.static(path.join(__dirname, "./client/static")));
-
-app.set("views", path.join(__dirname, "./client/views"));
-app.set("view engine", "ejs");
 
 app.get("/", function(req, res){
 	res.render("index");
