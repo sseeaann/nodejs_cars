@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Cars</title>
+	<link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css">
+</head>
+<body>
+	<div class="container">
+<% for(car in cars) { %>
+		<h2>Edit: <%= cars[car].year %> <%= cars[car].make %> <%= cars[car].model %></h2>
+
+<% if(typeof(errors) != "undefined") { %>
+	<% for(var x in errors) { %>
+		<p class="text-danger">**<%= errors[x].message %>**</p>
+	<% } %>
+<% } %>
+		<form action="/cars/<%= cars[car]._id %>" method="post" class="form-horizontal">
+			<div class="form-group">
+				<label for="make" class="col-sm-2 control-label">Make</label>
+				<div class="col-sm-10">
+					<input type="text" name="make" class="form-control" id="make" value="<%= cars[car].make %>">
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="model" class="col-sm-2 control-label">Model</label>
+				<div class="col-sm-10">
+					<input type="text" name="model" class="form-control" id="model" value="<%= cars[car].model %>">
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="year" class="col-sm-2 control-label">Year</label>
+				<div class="col-sm-10">
+					<input type="text" name="year" class="form-control" id="year" value="<%= cars[car].year %>">
+				</div>
+			</div>
+			<div class="form-group">
+				<div class="col-sm-offset-2 col-sm-10">
+					<input type="submit" class="btn btn-default" value="Submit"> <a href="/cars" class="btn btn-warning">Cancel</a>
+				</div>
+			</div>
+		</form>
+<% } %>
+	</div>
+	<!-- SCRIPTS -->
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>​
+</body>
+</html>

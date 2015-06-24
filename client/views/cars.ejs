@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Cars</title>
+	<link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css">
+	<link rel="stylesheet" href="/style.css">
+</head>
+<body>
+	<div class="container">
+		<h1>Cars in database</h1>
+		<a href="/" class="btn btn-default btn-sm">Back</a>
+		<br>
+		<br>
+		<table class="table table-bordered table-hover">
+			<thead>
+				<tr>
+					<td>Make</td>
+					<td>Model</td>
+					<td>Year</td>
+					<td>Action</td>
+				</tr>
+			</thead>
+			<tbody>
+			<% for(car in cars) { %>
+				<tr>
+					<td><%= cars[car].make %></td>
+					<td><%= cars[car].model %></td>
+					<td><%= cars[car].year %></td>
+					<td>
+						<form action="/cars/<%= cars[car]._id %>/delete" method="post">
+							<a href="/cars/<%= cars[car]._id %>" class="btn btn-info">View</a>
+							<a href="/cars/<%= cars[car]._id %>/edit" class="btn btn-warning">Edit</a>
+							<input type="submit" id="delete_btn" class="btn btn-danger" value="Delete">
+						</form>
+					</td>
+				</tr>
+			<% } %>
+			</tbody>
+		</table>
+	</div>
+	<!-- SCRIPTS -->
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>​
+</body>
+</html>
